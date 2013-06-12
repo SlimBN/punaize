@@ -1,5 +1,24 @@
 Punaise::Application.routes.draw do
+  
+
+  resources :states
+
+
+  resources :categories
+
+
+  devise_for :users do
+    get "login", :to => "devise/sessions#new"
+    get "logout", :to => "devise/sessions#destroy"
+    get "register", :to => "devise/registrations#new"
+  end
+  
+  resources :users
+
+
   root :to => "main#index"
+
+
 
 
   # The priority is based upon order of creation:

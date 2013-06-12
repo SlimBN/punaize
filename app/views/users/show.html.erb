@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Username:</b>
+  <%= @user.username %>
+</p>
+
+<p>
+  <b>Avatar:</b>
+  <%= @user.avatar %>
+</p>
+
+<p>
+  <b>Slug:</b>
+  <%= @user.slug %>
+</p>
+
+<p>
+  <b>Country:</b>
+  <%= @user.country_id %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @user.state_id %>
+</p>
+
+<p>
+  <b>Is admin:</b>
+  <%= @user.is_admin %>
+</p>
+
+<p>
+  <b>Is moderator:</b>
+  <%= @user.is_moderator %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

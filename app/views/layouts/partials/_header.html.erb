@@ -1,12 +1,18 @@
 	<div id="header">
-		<%= image_tag "logo.png" %>
+		<%= link_to (image_tag "logo.png"), root_path() %>
 
 		<div class="menu">
 			<ul>
 				<li><a href="">Explorer</a></li>
 				<li><a href="">Blog</a></li>
-				<li><a href="">Se Connecter</a></li>
-				<li><a href="">Nous Rejoindre</a></li>
+
+				<% if user_signed_in? %>
+				<li><%= link_to "Se Deconnecter", logout_path() %></li>
+				<% else %>
+				<li><%= link_to "Se Connecter", login_path() %></li>
+				<li><%= link_to "Nous Rejoindre", register_path() %></li>
+				<% end %>
+
 			</ul>
 		</div>
 

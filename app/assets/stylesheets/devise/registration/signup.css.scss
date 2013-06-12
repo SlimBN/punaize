@@ -1,0 +1,135 @@
+#signup-container {
+	width: 600px;
+
+	margin: 0 auto;
+	margin-top: 40px;
+	margin-bottom: -40px;
+
+	color: #4b5c66;
+	text-align: center;
+
+	h2 {
+		-webkit-font-smoothing: antialiased;
+		line-height: 60px;
+		vertical-align: middle;
+		text-align: center;
+		font-family: Calibri;
+		font-size: 50px;
+		font-weight: 100;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	.fb {
+		-webkit-font-smoothing: antialiased;
+		background-image: url(image-path('ui/fb_white.png'));
+		background-size: 24px 24px;
+		border-radius: 7px;
+		-webkit-border-radius: 7px;
+		-moz-border-radius: 7px;
+		-moz-background-clip: padding;
+		-webkit-background-clip: padding-box;
+		background-clip: padding-box;
+		background-color: #3a5898;
+		background-position: 7% center;
+		background-repeat: no-repeat;
+		color: white;
+		cursor: pointer;
+		font-family: "Open Sans",Arial,Helvetica,sans-serif;
+		font-size: 30px;
+		font-weight: 200;
+		height: 60px;
+		line-height: 60px;
+		margin: 0 auto;
+		padding: 0 35px 0 60px;
+		text-align: center;
+	}
+
+	.or {
+
+		margin-top: 30px;
+		margin-bottom: 30px;
+
+		a {
+			padding: 15px 15px 15px 15px;
+
+			border: 3px solid #e1e6e9;
+			border-radius: 50%;
+
+			color: #89949b;
+		}
+	}
+
+	.form {
+		-webkit-font-smoothing: antialiased;
+		background-size: 24px 24px;
+		border-radius: 7px;
+		-webkit-border-radius: 7px;
+		-moz-border-radius: 7px;
+		-moz-background-clip: padding;
+		-webkit-background-clip: padding-box;
+		background-clip: padding-box;
+		background-color: #cad2d7;
+		background-position: 7% center;
+		background-repeat: no-repeat;
+		color: white;
+		cursor: pointer;
+		font-family: "Open Sans",Arial,Helvetica,sans-serif;
+		font-size: 30px;
+		font-weight: 200;
+		height: 60px;
+		line-height: 60px;
+		margin: 0 auto;
+		margin-bottom: 15px;
+		padding: 0 35px 0 60px;
+		text-align: center;
+
+		input {
+			width: 100%;
+			background-color: transparent;
+			color: #4b5c66;
+			font-family: "Open Sans",Arial,Helvetica,sans-serif;
+			outline: none;
+			border: none;
+
+			height: 60px;
+			font-size: 30px;
+			line-height: 30px;
+			text-align: center;
+			vertical-align: middle;
+			padding-bottom: 2px;
+		}		
+	}
+
+	.actions {
+		text-align: right;
+
+		a {
+			background-color: #1F282F;
+
+			color: #fff;
+			line-height: 40px;
+			vertical-align: middle;
+
+			padding: 13px 12px 12px 12px;
+
+			border-radius: 9px;
+			border: none;		
+		}
+
+		input {
+			background-color: #1F282F;
+
+			color: #fff;
+
+			height: 40px;
+			width: 100px;
+
+			border-radius: 9px;
+			border: none;
+		}
+	}
+
+}

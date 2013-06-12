@@ -1,0 +1,43 @@
+<div id="signup-container">
+	
+	<h2>Rejoignez La Communauté</h2>
+
+
+	<a href="">
+		<div class="fb">
+			Se Connecter Avec Facebook
+		</div>		
+	</a>
+
+	<div class="or">
+		<a href="">ou</a>
+	</div>
+
+
+	<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+	  <%= devise_error_messages! %>
+
+	<div class="form">
+		<%= f.email_field :email, :autofocus => true, :placeholder => "Adresse Email" %>
+	</div>
+
+	<div class="form">
+		<%= f.password_field :password, :placeholder => "Mot de passe" %>
+	</div>
+
+	<div class="form">
+		<%= f.password_field :password_confirmation, :placeholder => "Confirmez votre mot de passe" %>
+	</div>
+
+	<div class="actions">
+		<%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+		  <%= link_to "Mot de passe oublié?", new_password_path(resource_name) %>
+		<% end -%>
+
+		<%= f.submit "S'enregistrer" %>
+	</div>
+
+	<% end %>
+
+</div>
+
