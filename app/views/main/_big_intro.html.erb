@@ -1,0 +1,40 @@
+<div id="big-module">
+
+	<div class="content">
+		<ul class="spans-block">
+			<li>
+				<span>Parceque c'est un monde</span>
+			</li>
+			<li>
+				<span>De photos, et nous les vivons...</span>
+			</li>
+			
+			
+		</ul>
+
+		<div class="text">
+			Punaize est une communauté ou vous partagez idées, photos, souvenirs, cadeaux et inspirations...
+		</div>
+
+		<div class="joinus">
+			<div class="facebook">
+				<%= image_tag "ui/fbjoin.png" %>
+			</div>
+			<div class="alternative">
+				Ou utilisez votre <a href="#sddd">Email</a>
+			</div>
+		</div>
+
+	</div>
+	
+	<div class="overlay"></div>
+	
+</div>
+
+<script>
+	$("#big-module").slimBG([
+		"<%= asset_path ('bgs/1.jpg') %>",
+		"<%= asset_path ('bgs/2.jpg') %>",
+		"<%= asset_path ('bgs/3.jpg') %>"
+	], {duration: 3000, fade: 750});
+</script>

@@ -1,0 +1,68 @@
+@import 'colors';
+
+#header {
+	-webkit-font-smoothing: antialiased;
+	margin: 0px;
+
+	width: 100%;
+	height: 80px;
+
+	background-color: $principalcolor;
+
+	line-height: 80px;
+	vertical-align: middle;
+
+	img {
+		vertical-align: middle;
+	}
+
+	.menu {
+		height: 80px;
+
+		vertical-align: middle;
+		display: inline-block;
+
+		float: right;
+
+		margin-right: 20px;
+
+		ul {
+			margin: 0px;
+			padding: 0px;
+
+			li {
+				margin: 0px;
+				padding: 0px;
+
+				display: inline-block;
+
+				list-style: none;
+
+				font-size: 22px;
+				font-weight: bold;
+				line-height: 80px;
+				vertical-align: middle;
+
+				a {
+					background-color: rgba(0, 0, 0, 0.2);
+
+					color: #fff;
+					text-decoration: none;
+
+					margin-right: 3px;
+					padding: 10px;
+
+					border-radius: 5px;
+
+					&:hover {
+						background-color: rgba(0, 0, 0, 0.4);
+
+						box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.6)
+					}
+				}
+
+				
+			}
+		}
+	}
+}
