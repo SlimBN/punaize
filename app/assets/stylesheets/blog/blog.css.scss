@@ -1,0 +1,68 @@
+#blog-container {
+	width: 800px;
+
+	margin: 0 auto;
+	padding-top: 80px;
+
+	background-color: transparent;
+
+	margin-left: 100px;
+
+	text-align: center;
+
+	h1 {
+		font-family: 'LatoHairline', sans-serif;
+		font-size: 60px;
+		font-weight: 300;
+	}
+
+	#posts {
+
+		#post {
+			text-align: left;
+
+			.title {
+				margin-bottom: 15px;
+				line-height: 33px;
+				font-size: 24px;
+				font-style: normal;
+				font-weight: 700;
+				letter-spacing: 0px;
+				font-family: 'LatoRegular', sans-serif;
+
+				a {
+					text-decoration: none;
+					color: #000;
+				}
+
+			}
+
+			.preview {
+				margin-top: 20px;
+				margin-bottom: 20px;
+
+				img {
+					border-radius: 10px;
+				}
+			}
+
+			.content {
+				font-family: 'LatoLight';
+				font-style: normal;
+				font-size: 18px;
+				font-weight: 100;
+				letter-spacing: 1px;
+				line-height: 25px;
+				color: #000;
+			}
+
+			.author {
+				text-align: right;
+				font-family: 'LatoLightItalic';
+
+				margin-top: 10px;
+			}
+		}
+	}
+	
+}

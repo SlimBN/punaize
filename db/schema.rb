@@ -11,7 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130612195143) do
+ActiveRecord::Schema.define(:version => 20130613105203) do
+
+  create_table "blogs", :force => true do |t|
+    t.string   "title"
+    t.string   "preview"
+    t.text     "content"
+    t.string   "slug"
+    t.integer  "user_id"
+    t.integer  "blog_category_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "boards", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "slug"
+    t.integer  "user_id"
+    t.integer  "cover_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -23,9 +44,53 @@ ActiveRecord::Schema.define(:version => 20130612195143) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "comments", :force => true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "pun_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "countries", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.string   "flag"
+    t.integer  "continent_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "currencies", :force => true do |t|
+    t.string   "name"
+    t.string   "symbol"
+    t.boolean  "enabled"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "mains", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "puns", :force => true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.string   "image"
+    t.string   "link"
+    t.float    "price"
+    t.integer  "currency_id"
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.integer  "original_user_id"
+    t.integer  "board_id"
+    t.integer  "original_board_id"
+    t.integer  "original_punaise_id"
+    t.boolean  "deleted"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "states", :force => true do |t|

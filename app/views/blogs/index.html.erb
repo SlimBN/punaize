@@ -1,0 +1,37 @@
+<h1>Les Chroniques D'une Equipe</h1>
+
+<div id="posts">
+
+<% @blogs.each do |blog| %>
+    
+    <div id="post">
+
+        <div class="title">
+            <%= link_to blog.title, blog_path(blog) %>
+        </div>
+
+        <div class="preview">
+            <%= image_tag blog.preview_url(:preview).to_s %>            
+        </div>
+
+        <div class="content">
+            <%= blog.content %>
+        </div>
+
+        <div class="author">
+            <%= blog.user.username %></br><%= time_ago_in_words(blog.created_at) %>
+        </div>
+        
+
+    </div>
+    
+
+<% end %>  
+
+
+</div>
+
+
+<br />
+
+<%= link_to 'New Blog', new_blog_path %>

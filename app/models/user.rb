@@ -9,6 +9,13 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :avatar, :country_id, :is_admin, :is_moderator, :slug, :state_id, :username
 
+  mount_uploader :avatar, AvatarUploader
+
   extend FriendlyId
   friendly_id :username, use: :slugged
+
+  has_many :blogs
+  has_many :puns
+  has_many :comments
+  
 end

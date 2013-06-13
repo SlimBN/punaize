@@ -20,13 +20,21 @@
     <%= f.file_field :avatar %>
   </div>
   <div class="form">
-    <%= f.number_field :country_id %>
+    <select id="user_country_id" name="user[country_id]">
+      <% Country.all.each do |country|  %>
+        <option value="<%= country.id %>"><%= country.name %> </option>
+      <% end %>
+    </select>
   </div>
   <div class="form">
-    <%= f.number_field :state_id %>
+    <select id="user_state_id" name="user[state_id]">
+      <% State.all.each do |state|  %>
+        <option value="<%= state.id %>"><%= state.name %> </option>
+      <% end %>
+    </select>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Suivant" %>
   </div>
 <% end %>

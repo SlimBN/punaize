@@ -1,6 +1,9 @@
 Punaise::Application.routes.draw do
   
 
+  resources :blogs
+
+
   resources :currencies
 
 

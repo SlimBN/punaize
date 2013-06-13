@@ -10,6 +10,12 @@ gem 'sqlite3'
 gem "friendly_id"
 
 
+
+#Uploader gem
+gem 'carrierwave'
+gem "mini_magick"
+
+
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'

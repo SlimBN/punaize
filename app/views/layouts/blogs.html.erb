@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Punaize - Blog</title>
+  <link rel="shortcut icon" href="asset_path('favicon.ico')" type="image/x-icon" />
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<!-- WHAT WE DO IN LIFE, IT GOES INTO ETERNITY
+
+<%= render 'layouts/partials/header' %>
+ -->
+<%= render 'blogs/partials/sidebar' %>
+
+<div id="blog-container">
+	
+	<%= yield %>
+
+</div>
+
+
+
+</body>
+</html>
