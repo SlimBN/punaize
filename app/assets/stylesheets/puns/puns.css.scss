@@ -1,0 +1,44 @@
+.puns-bg {
+	background-color: #EAEDF0;
+}
+
+#puns-container {
+	list-style-type: none;
+	position: relative; /** Needed to ensure items are laid out relative to this container **/
+	margin: 0;
+
+	width: 100%;
+	margin: 0 auto;
+
+	margin-top: 10px;
+
+	//background-image: url(image-path('bgs/kindajean.png'));
+
+	#pun {
+		width: 280px;
+
+		border-radius: 9px;
+		overflow: hidden;
+
+		margin: 0px;
+		padding: 0px;
+
+		background-color: #eee;
+
+		img {
+			width: 280px;
+			height: auto;
+		}
+
+		.description {
+			width: 280px;
+
+			margin: 0 auto;
+
+			padding: 10px;
+
+			border-bottom: 1px solid black;
+
+		}
+	}
+}

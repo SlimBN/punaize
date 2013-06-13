@@ -1,42 +1,27 @@
+
+<div id="puns-container">
+    
+    <% @puns.each do |pun| %>
+    <li id="pun">
+        <%= image_tag pun.image_url(:gridthumb).to_s %>
+        <div class="description">
+            <%= pun.description %>
+        </div>
+    </li>
+    <% end %>
+
+
+
+</div>
+
+
 <h1>Listing puns</h1>
 
 <table>
-  <tr>
-    <th>Title</th>
-    <th>Slug</th>
-    <th>Image</th>
-    <th>Link</th>
-    <th>Price</th>
-    <th>Currency</th>
-    <th>Description</th>
-    <th>User</th>
-    <th>Category</th>
-    <th>Original user</th>
-    <th>Board</th>
-    <th>Original board</th>
-    <th>Original punaise</th>
-    <th>Deleted</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @puns.each do |pun| %>
   <tr>
     <td><%= pun.title %></td>
-    <td><%= pun.slug %></td>
-    <td><%= pun.image %></td>
-    <td><%= pun.link %></td>
-    <td><%= pun.price %></td>
-    <td><%= pun.currency_id %></td>
-    <td><%= pun.description %></td>
-    <td><%= pun.user_id %></td>
-    <td><%= pun.category_id %></td>
-    <td><%= pun.original_user_id %></td>
-    <td><%= pun.board_id %></td>
-    <td><%= pun.original_board_id %></td>
-    <td><%= pun.original_punaise_id %></td>
-    <td><%= pun.deleted %></td>
     <td><%= link_to 'Show', pun %></td>
     <td><%= link_to 'Edit', edit_pun_path(pun) %></td>
     <td><%= link_to 'Destroy', pun, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -47,3 +32,32 @@
 <br />
 
 <%= link_to 'New Pun', new_pun_path %>
+
+
+  <script type="text/javascript">
+    $(document).ready(new function() {
+      // Prepare layout options.
+      var options = {
+        autoResize: true, // This will auto-update the layout when the browser window is resized.
+        container: $('#puns-container'), // Optional, used for some extra CSS styling
+        offset: 15, // Optional, the distance between grid items
+        itemWidth: 280 // Optional, the width of a grid item
+      };
+
+      // Get a reference to your grid items.
+      var handler = $('#puns-container #pun');
+
+      // Call the layout function.
+      handler.wookmark(options);
+
+      $('#puns-container #pun').imagesLoaded(function() {
+          // do stuff after images are loaded
+          handler.wookmark(options);
+        });
+
+
+
+      $('#puns-container').trigger('refreshWookmark');
+
+    });
+  </script>

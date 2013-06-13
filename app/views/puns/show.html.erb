@@ -2,7 +2,7 @@
 
 <p>
   <b>Title:</b>
-  <%= @pun.title %>
+  <%= @pun.tag_list %>
 </p>
 
 <p>
@@ -11,8 +11,13 @@
 </p>
 
 <p>
+  <b>Slug:</b>
+  <%= @pun.description %>
+</p>
+
+<p>
   <b>Image:</b>
-  <%= @pun.image %>
+  <%= image_tag @pun.image_url().to_s %>
 </p>
 
 <p>

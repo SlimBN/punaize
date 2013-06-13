@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613105203) do
+ActiveRecord::Schema.define(:version => 20130613145900) do
 
   create_table "blogs", :force => true do |t|
     t.string   "title"
@@ -91,7 +91,16 @@ ActiveRecord::Schema.define(:version => 20130613105203) do
     t.boolean  "deleted"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "tag_list"
   end
+
+  create_table "puns_tags", :force => true do |t|
+    t.integer "pun_id"
+    t.integer "tag_id"
+  end
+
+  add_index "puns_tags", ["pun_id"], :name => "index_puns_tags_on_pun_id"
+  add_index "puns_tags", ["tag_id"], :name => "index_puns_tags_on_tag_id"
 
   create_table "states", :force => true do |t|
     t.string   "name"
@@ -100,6 +109,14 @@ ActiveRecord::Schema.define(:version => 20130613105203) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "tags", :force => true do |t|
+    t.string   "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tags", ["content"], :name => "index_tags_on_content", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "username"
