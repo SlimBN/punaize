@@ -1,6 +1,21 @@
 Punaise::Application.routes.draw do
   
 
+  resources :currencies
+
+
+  resources :boards
+
+
+  resources :comments
+
+
+  resources :puns
+
+
+  resources :countries
+
+
   resources :states
 
 

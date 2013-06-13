@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  slug: MyString
+  image: MyString
+  link: MyString
+  price: 1.5
+  currency_id: 1
+  description: MyText
+  user_id: 1
+  category_id: 1
+  original_user_id: 1
+  board_id: 1
+  original_board_id: 1
+  original_punaise_id: 1
+  deleted: false
+
+two:
+  title: MyString
+  slug: MyString
+  image: MyString
+  link: MyString
+  price: 1.5
+  currency_id: 1
+  description: MyText
+  user_id: 1
+  category_id: 1
+  original_user_id: 1
+  board_id: 1
+  original_board_id: 1
+  original_punaise_id: 1
+  deleted: false

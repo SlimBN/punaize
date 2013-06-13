@@ -1,0 +1,75 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @pun.title %>
+</p>
+
+<p>
+  <b>Slug:</b>
+  <%= @pun.slug %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= @pun.image %>
+</p>
+
+<p>
+  <b>Link:</b>
+  <%= @pun.link %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @pun.price %>
+</p>
+
+<p>
+  <b>Currency:</b>
+  <%= @pun.currency_id %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @pun.description %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @pun.user_id %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @pun.category_id %>
+</p>
+
+<p>
+  <b>Original user:</b>
+  <%= @pun.original_user_id %>
+</p>
+
+<p>
+  <b>Board:</b>
+  <%= @pun.board_id %>
+</p>
+
+<p>
+  <b>Original board:</b>
+  <%= @pun.original_board_id %>
+</p>
+
+<p>
+  <b>Original punaise:</b>
+  <%= @pun.original_punaise_id %>
+</p>
+
+<p>
+  <b>Deleted:</b>
+  <%= @pun.deleted %>
+</p>
+
+
+<%= link_to 'Edit', edit_pun_path(@pun) %> |
+<%= link_to 'Back', puns_path %>
