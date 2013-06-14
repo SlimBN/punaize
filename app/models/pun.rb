@@ -24,5 +24,14 @@ class Pun < ActiveRecord::Base
     	TAG_PROCESSOR.push(:pun_id => self.id)
   	end
 
+  
+  has_many :likeds, :class_name => "Liking",
+                       :foreign_key => "liker_id"
+  has_many :likes, :through => :likeds, 
+                     :source => :user
+
+  has_many :likings
+  has_many :likers, :through => :likings
+
 
 end

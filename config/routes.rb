@@ -1,5 +1,7 @@
 Punaise::Application.routes.draw do
-  
+
+  resources :followings, :only => [:create, :destroy]
+  resources :likings, :only => [:create, :destroy] 
 
   resources :blogs
 

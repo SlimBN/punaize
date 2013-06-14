@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+  before_filter :authenticate_user!
+
   def index
-    @users = User.all
+    @users = User.includes(:followers).
+                  where("id != ?", current_user.id).all
+    @following = current_user.follows.all
 
     respond_to do |format|
       format.html # index.html.erb

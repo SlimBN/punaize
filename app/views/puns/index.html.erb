@@ -4,7 +4,41 @@
     <% @puns.each do |pun| %>
     <li>
         <div id="pun">
-            <%= image_tag pun.image_url(:gridthumb).to_s %>
+            <div class="image">
+                <div class="overlay">
+                    
+                </div>
+                <%= image_tag pun.image_url(:gridthumb).to_s %>
+            </div>
+            
+
+            <div class="stats">
+                <div class="first">
+                    <%= image_tag "icons/love.png" %>
+                    <div class="number">
+                        80
+                    </div>
+                </div>
+                
+                <div class="second">
+                    <%= image_tag "icons/comment.png" %>
+                    <div class="number">
+                        80
+                    </div>
+                </div>
+                
+                <a href="#new_pun_modal" rel="modal:open">
+                    <div class="third">
+                        <%= image_tag "icons/punaise.png" %>
+                        <div class="number">
+                            80
+                        </div>
+                    </div>                    
+                </a>
+
+                
+            </div>            
+
             <div class="description">
                 <%= pun.description %>
             </div>
@@ -62,6 +96,8 @@
 </table>
 
 <br />
+
+
 
 <%= link_to 'New Pun', new_pun_path %>
 
