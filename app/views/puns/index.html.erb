@@ -12,11 +12,11 @@
                                 <% if (current_user.likings.where("pun_id = ?", pun.id).count == 0) %>
                                     <%= link_to (image_tag "icons/pun/love.png"), likings_path(:liked => pun.id), :method => :post %>
                                 <% else %>
-                                    <%= link_to "Unfollow", liking_path(pun.likings), :method => :delete %>
+                                    <%= link_to (image_tag "icons/pun/love_red.png"), liking_path(pun.likings), :method => :delete %>
                                 <% end %>
-                                <%= image_tag "icons/pun/love.png" %>
+
                             </div>                            
-                        </a><a href="">
+                        </a><a href="#repun-<%= pun.id %>" rel="modal:open">
                             <div class="repun">
                                 <%= image_tag "icons/pun/repun.png" %>
                             </div>                            
@@ -100,6 +100,57 @@
         </div>
 
     </li>
+
+    <div id="repun-<%= pun.id %>" class="modal repun-modal">
+    
+    <%= form_for(Pun.new(params[:pun]), :validate => true) do |f| %>
+
+          <div class="left">
+               
+               <div class="presentation">
+                    
+                    <div class="field">
+                         <%= f.text_area :description, :value => pun.description %>
+                    </div>
+       
+                    <div class="field">
+
+                         <select id="pun_board_id" name="pun[board_id]" value="">
+                              <% Board.where("user_id = ?", current_user.id).each do |board|  %>
+                                   <option value="<%= board.id %>"><%= board.name %> </option>
+                              <% end %>
+                         </select>
+                    </div>
+
+               </div>
+
+
+                        <%= f.hidden_field :price, :value => pun.price %>
+                        <%= f.hidden_field :link, :value => pun.link %>
+                        <%= f.hidden_field :user_id, :value => current_user.id %>
+                        <%= f.hidden_field :currency_id, :value => pun.currency.id %>
+
+
+
+          </div>
+
+          <div class="right">
+               
+               <div id="image-uploader">
+                    <%= f.hidden_field :image, :value => pun.image %>
+               </div>
+
+          </div>
+
+
+          
+        <div id="actions">
+            <input name="commit" type="submit" value="Accrocher" />
+        </div>
+
+    <% end %>
+
+    </div>
 
     <% end %>
 
