@@ -8,7 +8,9 @@
 
 				<% if user_signed_in? %>
 				<li><%= link_to "+", "#new_pun_modal", :rel => "modal:open" %></li>
+				<% unless current_user.avatar.nil? %>
 				<li><%= link_to (image_tag current_user.avatar_url(:headerthumb).to_s), user_path(current_user), :class => "avatar" %></li>
+				<% end %>
 				<li><%= link_to "Se Déconnecter", logout_path() %></li>
 				<% else %>
 				<li><%= link_to "Se Connecter", login_path() %></li>

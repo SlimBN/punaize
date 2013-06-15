@@ -3,9 +3,9 @@ class LikingsController < ApplicationController
 	before_filter :authenticate_user!
 
   def create
-    liking = current_user.likeds.build(
-                    :liker_id => params[:like])
-    if liking.save
+    like = current_user.likings.build(
+                    :pun_id => params[:liked])
+    if (like.save)
       flash[:notice] = "Now liking."
       redirect_to puns_url
     else
@@ -15,7 +15,7 @@ class LikingsController < ApplicationController
   end
 
   def destroy
-    liking = current_user.likeds.find(params[:id])
+    liking = Liking.where("user_id = ?", current_user.id).find(params[:id])
     liking.destroy
     flash[:notice] = "Removed Follow."
     redirect_to puns_url

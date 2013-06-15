@@ -106,13 +106,13 @@ ActiveRecord::Schema.define(:version => 20130614092144) do
 
   create_table "likings", :force => true do |t|
     t.integer  "pun_id"
-    t.integer  "liker_id"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "likings", ["liker_id"], :name => "index_likings_on_liker_id"
   add_index "likings", ["pun_id"], :name => "index_likings_on_pun_id"
+  add_index "likings", ["user_id"], :name => "index_likings_on_user_id"
 
   create_table "mains", :force => true do |t|
     t.datetime "created_at", :null => false

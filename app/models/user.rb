@@ -29,13 +29,13 @@ class User < ActiveRecord::Base
   has_many :followings
   has_many :followers, :through => :followings
 
-  has_many :likeds, :class_name => "Liking",
-                       :foreign_key => "liker_id"
-  has_many :likes, :through => :likeds, 
-                     :source => :pun
+  # has_many :likeds, :class_name => "Liking",
+  #                      :foreign_key => "liker_id"
+  # has_many :likes, :through => :likeds, 
+  #                    :source => :pun
 
   has_many :likings
 
-  belongs_to :likings
+  # belongs_to :likings
   
 end

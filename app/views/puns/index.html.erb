@@ -9,13 +9,10 @@
                     <div class="toplinks">
                         <a href="">
                             <div class="like">
-                                <% if current_user.likes.include?(pun) %>
-                                    <%= link_to (image_tag "icons/pun/love.png"), pun.likings & current_user.likeds,
-                                                        :method => :delete,
-                                                        :prompt => "Are you sure?" %>
+                                <% if (current_user.likings.where("pun_id = ?", pun.id).count == 0) %>
+                                    <%= link_to (image_tag "icons/pun/love.png"), likings_path(:liked => pun.id), :method => :post %>
                                 <% else %>
-                                    <%= link_to ("icons/pun/repun.png"), likings_path(:like => pun.id),
-                                                        :method => :post %>
+                                    <%= link_to "Unfollow", liking_path(pun.likings), :method => :delete %>
                                 <% end %>
                                 <%= image_tag "icons/pun/love.png" %>
                             </div>                            
@@ -46,7 +43,7 @@
                 <div class="first">
                     <%= image_tag "icons/love.png" %>
                     <div class="number">
-                        80
+                        <%= pun.likings.count %>
                     </div>
                 </div>
                 
@@ -67,9 +64,7 @@
                 </a>
 
                 
-            </div>
-
-            <%= current_user.username %> - following <%= current_user.likes.count %>, followed by <%= pun.likings.count %>       
+            </div>      
 
             <div class="description">
                 <%= pun.description %>

@@ -28,13 +28,13 @@ class Pun < ActiveRecord::Base
     	TAG_PROCESSOR.push(:pun_id => self.id)
   	end
 
-  belongs_to :likings
+  # belongs_to :likings
 
-  has_many :likes, :through => :likeds, 
-                     :source => :user
+  # has_many :likes, :through => :likeds, 
+  #                    :source => :user
 
   has_many :likings
-  has_many :likers, :through => :likings
+  #has_many :likers, :through => :likings
 
 
 end
