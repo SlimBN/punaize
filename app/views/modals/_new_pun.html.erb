@@ -1,3 +1,57 @@
-<div id="new_pun_modal" class="modal">
-    <p>Thanks for clicking.  That felt good.  <a href="#" rel="modal:close">Close</a> or press ESC</p>
+<div id="new_pun_modal" class="modal" stryle="display:none">
+    <%= form_for(Pun.new(params[:pun]), :validate => true) do |f| %>
+
+          <div class="left">
+               
+               <div class="presentation">
+                    
+                    <div class="field">
+                         <%= f.text_area :description, :placeholder => "Quelques mots pour parler de votre punaises, les tags se font par # hashtags" %>
+                    </div>
+       
+                    <div class="field">
+                         <%= f.text_field :link, :placeholder => "Lien que référencera votre Punaise" %>
+
+                         <select id="pun_board_id" name="pun[board_id]">
+                              <% Board.where("user_id = ?", current_user.id).each do |board|  %>
+                                   <option value="<%= board.id %>"><%= board.name %> </option>
+                              <% end %>
+                         </select>
+                    </div>
+
+               </div>
+
+               <div class="product-type">
+                    
+                    <div class="field">
+                         <%= f.text_field :price, :placeholder => "Laissez vide si ca n'est pas un produit" %>
+
+                         <select id="pun_currency_id" name="pun[currency_id]" value="1">
+                              <% Currency.all.each do |currency|  %>
+                                   <option value="<%= currency.id %>"><%= currency.name %> </option>
+                              <% end %>
+                         </select>
+                    </div>
+
+
+               </div>
+
+          </div>
+
+          <div class="right">
+               
+               <div id="image-uploader">
+                    <%= f.file_field :image %>
+               </div>
+
+          </div>
+
+
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+		  
+		<div id="actions">
+			<input name="commit" type="submit" value="Accrocher" />
+		</div>
+
+	<% end %>
 </div>

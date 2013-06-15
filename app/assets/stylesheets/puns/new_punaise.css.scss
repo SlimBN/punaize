@@ -1,12 +1,14 @@
 #new-punaise-container {
-	width: 600px;
+		margin: 0 auto;
+		margin-top: 0px;
+		margin-bottom: -40px;
 
-	margin: 0 auto;
-	margin-top: 0px;
-	margin-bottom: -40px;
+		color: #4b5c66;
+		text-align: center;
 
-	color: #4b5c66;
-	text-align: center;
+
+
+
 
 	h2 {
 		-webkit-font-smoothing: antialiased;
@@ -17,5 +19,7 @@
 		font-size: 50px;
 		font-weight: 100;
 	}
+
+
 
 }

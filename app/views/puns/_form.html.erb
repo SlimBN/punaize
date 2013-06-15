@@ -12,11 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :tag_list %><br />
-    <%= f.text_field :tag_list %>
-  </div>
-  <div class="field">
-    <%= f.label :image %><br />
     <%= f.file_field :image %>
   </div>
   <div class="field">
@@ -44,3 +39,10 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<script id="template-upload" type="text/x-tmpl">
+<div class="upload">
+  {%=o.name%}
+  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+</div>
+</script>

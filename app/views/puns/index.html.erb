@@ -1,11 +1,41 @@
 
 <div id="puns-container">
     
-    <% @puns.each do |pun| %>
+    <% Pun.order('created_at DESC').each do |pun| %>
     <li>
         <div id="pun">
             <div class="image">
                 <div class="overlay">
+                    <div class="toplinks">
+                        <a href="">
+                            <div class="like">
+                                <% if current_user.likes.include?(pun) %>
+                                    <%= link_to (image_tag "icons/pun/love.png"), pun.likings & current_user.likeds,
+                                                        :method => :delete,
+                                                        :prompt => "Are you sure?" %>
+                                <% else %>
+                                    <%= link_to ("icons/pun/repun.png"), likings_path(:like => pun.id),
+                                                        :method => :post %>
+                                <% end %>
+                                <%= image_tag "icons/pun/love.png" %>
+                            </div>                            
+                        </a><a href="">
+                            <div class="repun">
+                                <%= image_tag "icons/pun/repun.png" %>
+                            </div>                            
+                        </a>
+
+                    </div>
+
+                    <div class="watch">
+                        <%= link_to (image_tag "icons/pun/watch.png"), pun_path(pun) %>
+                    </div>
+                    
+                    <% unless pun.price.nil? %>
+                    <div class="bottomprice">
+                        <%= pun.price %> <%= pun.currency.symbol %>
+                    </div>
+                    <% end %>
                     
                 </div>
                 <%= image_tag pun.image_url(:gridthumb).to_s %>
@@ -37,7 +67,9 @@
                 </a>
 
                 
-            </div>            
+            </div>
+
+            <%= current_user.username %> - following <%= current_user.likes.count %>, followed by <%= pun.likings.count %>       
 
             <div class="description">
                 <%= pun.description %>
@@ -88,6 +120,8 @@
 <% @puns.each do |pun| %>
   <tr>
     <td><%= pun.title %></td>
+    <td><%= pun.price %></td>
+    <td><%= pun.description %></td>
     <td><%= link_to 'Show', pun %></td>
     <td><%= link_to 'Edit', edit_pun_path(pun) %></td>
     <td><%= link_to 'Destroy', pun, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -129,3 +163,4 @@
 
     });
   </script>
+

@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :avatar, :country_id, :is_admin, :is_moderator, :slug, :state_id, :username
 
+  validates_uniqueness_of :username, :email
+  #validates :email, :email_format => true
+
   mount_uploader :avatar, AvatarUploader
 
   extend FriendlyId
@@ -29,9 +32,10 @@ class User < ActiveRecord::Base
   has_many :likeds, :class_name => "Liking",
                        :foreign_key => "liker_id"
   has_many :likes, :through => :likeds, 
-                     :source => :user
+                     :source => :pun
 
   has_many :likings
-  has_many :likers, :through => :likings
+
+  belongs_to :likings
   
 end

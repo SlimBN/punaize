@@ -1,3 +1,5 @@
+@import 'colors';
+
 .puns-bg {
 	background-color: #eeeeef;
 }
@@ -57,6 +59,8 @@
 				left: 0px;
 				top: 0px;
 
+				overflow: hidden;
+
 				visibility: hidden;
 
 				height: 100%;
@@ -67,6 +71,103 @@
 				border-radius: 9px 9px 0 0;
 
 				background-color: rgba(3, 3, 3, 0.5);
+
+				.toplinks {
+					position: absolute;
+					top: -40px;
+					left: 10px;
+
+					.like, .repun {
+						display: inline-block;
+
+						border-radius: 9px;
+
+						background-color: $announcebg;
+
+						padding: 5px;
+
+						img {
+							height: auto;
+							width: auto;
+						}
+					}
+				}
+
+				&:hover > .toplinks {
+					visibility: visible;
+
+					transition:All 0.4s ease-in-out;
+					-webkit-transition:All 0.4s ease-in-out;
+					-moz-transition:All 0.4s ease-in-out;
+					-o-transition:All 0.4s ease-in-out;
+					transform: translate(0px, 49px);
+					-webkit-transform: translate(0px, 49px);
+					-moz-transform: translate(0px, 49px);
+					-o-transform: translate(0px, 49px);
+					-ms-transform: translate(0px, 49px);
+				}
+
+
+				.bottomprice {
+					position: absolute;
+					bottom: 10px;
+					right: -40px;
+
+					border-radius: 9px;
+
+					background-color: rgba(0, 0, 0, 0.8);
+
+					padding: 5px;
+					padding-right: 10px;
+					padding-left: 10px;
+
+					color: #fff;
+					font-family: "LatoRegular";
+				}
+
+
+				&:hover > .bottomprice {
+					visibility: visible;
+
+					transition:All 0.4s ease-in-out;
+					-webkit-transition:All 0.4s ease-in-out;
+					-moz-transition:All 0.4s ease-in-out;
+					-o-transition:All 0.4s ease-in-out;
+					transform: translate(-50px, 0px);
+					-webkit-transform: translate(-50px, 0px);
+					-moz-transform: translate(-50px, 0px);
+					-o-transform: translate(-50px, 0px);
+					-ms-transform: translate(-50px, 0px);
+				}
+
+				.watch {
+					position: absolute;
+					top: 40%;
+					left: 80px;
+
+					opacity: 0.8;
+
+					width: 80px;
+					height: 50px;
+
+					line-height: 50px;
+					vertical-align: middle;
+					text-align: center;
+
+					border-radius: 9px;
+
+					background-color: $announcebg;
+
+					img {
+						vertical-align: middle;
+
+						height: auto;
+						width: auto;
+
+						margin-top: -8px;
+					}
+
+				}
 
 			}		
 		}
@@ -86,9 +187,17 @@
 			text-align: center;
 
 			border-bottom: 1px solid #CFCFD0;
-
+			
+			a {
+				text-decoration: none;
+				color: #171E23;
+			}
+		
 			.first, .second, .third {
 				display: inline-block;
+
+				line-height: 20px;
+				vertical-align: middle;
 
 				min-width: 70px;
 				max-width: 70px;
@@ -97,11 +206,23 @@
 				padding: 1px;
 				padding-top: 4px;
 
+				img {
+					vertical-align: middle;
+					padding-bottom: 3px;
+				}
+
 				.number {
+					display: inline-block;
+
+					line-height: 20px;
+					vertical-align: middle;
+
 					font-family: "LatoBoldItalic";
-					font-size: 30px;
+					font-size: 18px;
 
 					text-shadow: inset 0px 1px #fff, inset 0px 1px #fff, inset 0px 1px #fff;
+
+
 				}
 			}
 

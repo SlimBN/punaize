@@ -3,6 +3,10 @@ class Pun < ActiveRecord::Base
 
   	mount_uploader :image, ImageUploader
 
+    validates_presence_of :description
+
+    belongs_to :currency
+
     belongs_to :user
 
   	extend FriendlyId
@@ -24,9 +28,8 @@ class Pun < ActiveRecord::Base
     	TAG_PROCESSOR.push(:pun_id => self.id)
   	end
 
-  
-  has_many :likeds, :class_name => "Liking",
-                       :foreign_key => "liker_id"
+  belongs_to :likings
+
   has_many :likes, :through => :likeds, 
                      :source => :user
 

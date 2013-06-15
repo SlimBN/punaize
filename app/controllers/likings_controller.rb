@@ -4,7 +4,7 @@ class LikingsController < ApplicationController
 
   def create
     liking = current_user.likeds.build(
-                    :user_id => params[:like])
+                    :liker_id => params[:like])
     if liking.save
       flash[:notice] = "Now liking."
       redirect_to puns_url
