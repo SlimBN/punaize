@@ -137,7 +137,7 @@
           <div class="right">
                
                <div id="image-uploader">
-                    <%= f.hidden_field :image, :value => pun.image %>
+                    <%= f.hidden_field :remote_image_url, :value => "http://localhost:5000/"+pun.image_url.to_s %>
                </div>
 
           </div>
