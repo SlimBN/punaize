@@ -1,29 +1,96 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @pun.tag_list %>
-</p>
+<div id="show-pun" class="clearfix">
 
-<p>
-  <b>Slug:</b>
-  <%= @pun.slug %>
-</p>
 
-<p>
-  <b>Slug:</b>
-  <%= @pun.description %>
-</p>
 
-<p>
-  <b>Image:</b>
-  <%= image_tag @pun.image_url().to_s %>
-</p>
+    <div class="left">
 
-<p>
-  <b>Link:</b>
-  <%= @pun.link %>
-</p>
+    
+      <div class="image">
+        <div class="link"><%= image_tag "icons/pun/link.png" %> <%= link_to (truncate(@pun.link, :length => 100)), "http://" + @pun.link %></div>
+
+        <!-- truncate(newspaper.description, :length => 245) -->
+
+        <%= link_to (image_tag @pun.image_url().to_s), "http://" + @pun.link %>
+      </div>
+
+      <div class="originallyon">
+        pefjef
+      </div>
+
+      <div class="comments">
+        afef,zef
+      </div>
+
+    </div>
+
+    <div class="right">
+
+      <div class="fixer">
+
+        <div class="pun-data">
+          
+          <div class="avatar">
+
+            <%= link_to (image_tag @pun.user.avatar_url().to_s), user_path(@pun.user), :title => @pun.user.username %>
+            
+          </div>
+
+          <div class="user-board">
+            <div class="username">
+              <%= link_to @pun.user.username, user_path(@pun.user) %>
+            </div>
+
+            <div class="userdata">
+              <%= image_tag "icons/pun/localisation.png" %><%= @pun.user.country.name %> - <%= @pun.user.state.name %>
+            </div>
+
+            <div class="boardname">
+              <%= @pun.slug %>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="description">
+          <%= @pun.description %>
+
+          <div class="options">
+            zpfizjef
+          </div>
+        </div> 
+
+        <div class="other-board-puns">
+          <% Pun.order('created_at DESC').where('user_id = ?', @pun.user.id).last(16).each do |pun| %>
+            <%= link_to (image_tag pun.image_url().to_s), puns_path(pun) %>
+          <% end %>
+          <% Pun.order('created_at DESC').where('user_id = ?', @pun.user.id).last(16).each do |pun| %>
+            <%= link_to (image_tag pun.image_url().to_s), puns_path(pun) %>
+          <% end %>
+          <% Pun.order('created_at DESC').where('user_id = ?', @pun.user.id).last(16).each do |pun| %>
+            <%= link_to (image_tag pun.image_url().to_s), puns_path(pun) %>
+          <% end %>
+          <% Pun.order('created_at DESC').where('user_id = ?', @pun.user.id).last(16).each do |pun| %>
+            <%= link_to (image_tag pun.image_url().to_s), puns_path(pun) %>
+          <% end %>
+          <% Pun.order('created_at DESC').where('user_id = ?', @pun.user.id).last(16).each do |pun| %>
+            <%= link_to (image_tag pun.image_url().to_s), puns_path(pun) %>
+          <% end %>
+        </div>       
+
+      </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+<div style="display: block; width: 1200px;">dzdzzd</div>
+
 
 <p>
   <b>Price:</b>
@@ -35,20 +102,6 @@
   <%= @pun.currency_id %>
 </p>
 
-<p>
-  <b>Description:</b>
-  <%= @pun.description %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @pun.user_id %>
-</p>
-
-<p>
-  <b>Category:</b>
-  <%= @pun.category_id %>
-</p>
 
 <p>
   <b>Original user:</b>
@@ -68,11 +121,6 @@
 <p>
   <b>Original punaise:</b>
   <%= @pun.original_punaise_id %>
-</p>
-
-<p>
-  <b>Deleted:</b>
-  <%= @pun.deleted %>
 </p>
 
 

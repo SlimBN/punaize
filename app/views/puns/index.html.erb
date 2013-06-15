@@ -6,6 +6,7 @@
         <div id="pun">
             <div class="image">
                 <div class="overlay">
+                <% if user_signed_in? %>
                     <div class="toplinks">
                         <a href="">
                             <div class="like">
@@ -23,6 +24,7 @@
                         </a>
 
                     </div>
+                <% end %>
 
                     <div class="watch">
                         <%= link_to (image_tag "icons/pun/watch.png"), pun_path(pun) %>
@@ -35,6 +37,7 @@
                     <% end %>
                     
                 </div>
+
                 <%= image_tag pun.image_url(:gridthumb).to_s %>
             </div>
             
@@ -100,7 +103,8 @@
         </div>
 
     </li>
-
+    
+    <% if user_signed_in? %>
     <div id="repun-<%= pun.id %>" class="modal repun-modal">
     
     <%= form_for(Pun.new(params[:pun]), :validate => true) do |f| %>
@@ -137,7 +141,7 @@
           <div class="right">
                
                <div id="image-uploader">
-                    <%= f.hidden_field :remote_image_url, :value => "http://localhost:5000/"+pun.image_url.to_s %>
+                    <%= f.text_field :remote_image_url, :value => "http://localhost:5000"+pun.image_url.to_s %>
                </div>
 
           </div>
@@ -151,6 +155,7 @@
     <% end %>
 
     </div>
+    <% end %>
 
     <% end %>
 

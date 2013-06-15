@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :username, use: :slugged
 
+  belongs_to :country
+  belongs_to :state
+
   has_many :blogs
   has_many :puns
   has_many :comments
