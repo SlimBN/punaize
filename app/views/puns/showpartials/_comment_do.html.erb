@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+	<script type="text/javascript">
+      wideArea();
+    </script>
+	<%= form_for(Comment.new(params[:comment])) do |f| %>
+		<%= f.text_area :content, :datawidearea => "enable" %>
+
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+		<%= f.hidden_field :pun_id, :value => @pun.id %>
+
+		<%= f.submit %>
+	<% end %>
+<% else %>
+	Veuillez vous connecter pour pouvoir commenter s'il vous plait
+<% end %>

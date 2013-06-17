@@ -20,14 +20,14 @@
     <%= f.file_field :avatar %>
   </div>
   <div class="form">
-    <select id="user_country_id" name="user[country_id]">
+    <select id="user_country_id" name="user[country_id]" default='1'>
       <% Country.all.each do |country|  %>
         <option value="<%= country.id %>"><%= country.name %> </option>
       <% end %>
     </select>
   </div>
   <div class="form">
-    <select id="user_state_id" name="user[state_id]">
+    <select id="user_state_id" name="user[state_id]" default="1">
       <% State.all.each do |state|  %>
         <option value="<%= state.id %>"><%= state.name %> </option>
       <% end %>

@@ -1,0 +1,7 @@
+
+	<% Comment.where("pun_id = ?", @pun.id).order('created_at DESC').each do |comment| %>
+		<div class="comment">
+			<%= comment.content %>
+		</div>
+		
+	<% end %>

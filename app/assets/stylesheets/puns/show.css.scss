@@ -66,7 +66,7 @@
 				-webkit-font-smoothing: antialiased;
 
 					position: absolute;
-					top: 0px;
+					top: -70px;
 					left: 0px;
 
 					width: 100%;
@@ -121,6 +121,21 @@
 					}
 
 				}
+
+					&:hover > .link {
+						visibility: visible;
+
+						transition:All 0.4s ease-in-out;
+						-webkit-transition:All 0.4s ease-in-out;
+						-moz-transition:All 0.4s ease-in-out;
+						-o-transition:All 0.4s ease-in-out;
+						transform: translate(0px, 70px);
+						-webkit-transform: translate(0px, 70px);
+						-moz-transform: translate(0px, 70px);
+						-o-transform: translate(0px, 70px);
+						-ms-transform: translate(0px, 70px);
+					}
+
 		}
 
 		.originallyon {
@@ -131,12 +146,22 @@
 			box-shadow: 0 0 10px #A7AAAA;
 
 			text-align: center;
+			font-family: "LatoItalic";
+			font-size: 22px;
 
 			margin: 0 auto;
 			margin-top: 20px;
 			padding: 0px;
 			padding-top: 25px;
 			padding-bottom: 20px;
+
+			a {
+				font-family: 'LatoLightItalic';
+				text-decoration: none;
+				color: $writings;
+
+				border-bottom: 1px dotted $writings;
+			}
 
 		}
 

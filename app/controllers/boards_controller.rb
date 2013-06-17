@@ -44,8 +44,10 @@ class BoardsController < ApplicationController
 
     respond_to do |format|
       if @board.save
-        format.html { redirect_to @board, notice: 'Board was successfully created.' }
-        format.json { render json: @board, status: :created, location: @board }
+        # format.html { redirect_to @board, notice: 'Board was successfully created.' }
+        # format.json { render json: @board, status: :created, location: @board }
+
+        format.js { render :action => 'ajax/board_create' }
       else
         format.html { render action: "new" }
         format.json { render json: @board.errors, status: :unprocessable_entity }

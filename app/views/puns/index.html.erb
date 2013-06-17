@@ -23,6 +23,11 @@
                             </div>                            
                         </a>
 
+                        <% if (current_user.id == pun.user.id) %>
+                            <%= link_to 'Edit', edit_pun_path(pun) %>
+                            <%= link_to 'Destroy', pun, method: :delete, data: { confirm: 'Are you sure?' } %>
+                        <% end %>
+
                     </div>
                 <% end %>
 
@@ -61,7 +66,7 @@
                     <div class="third">
                         <%= image_tag "icons/punaise.png" %>
                         <div class="number">
-                            80
+                            <%= Pun.where("original_punaise_id = ?", pun.id).count + 1 %>
                         </div>
                     </div>                    
                 </a>
@@ -74,6 +79,8 @@
             </div>
 
         </div>   
+
+        <% unless pun.board.nil? %>
         <div class="user-avatar">
             <%= image_tag pun.user.avatar_url(:headerthumb).to_s %>
         </div>
@@ -83,12 +90,15 @@
                 Epinglé sur:
             </div>
             <div class="board">
-                Hammi Whmoumi
+                <%= link_to pun.board.name, board_path(pun.board) %>
             </div>
         </div>
+        <% end %>
+
         <div class="clear"></div>
 
         <!-- originellement sur -->
+        <% unless pun.original_board_id.nil? %>
         <div class="user-avatar">
             <%= image_tag pun.user.avatar_url(:headerthumb).to_s %>
         </div>
@@ -98,16 +108,19 @@
                 Originellement sur:
             </div>
             <div class="board">
-                Hammi Whmoumi
+                <% Board.where("id = ?", pun.original_board_id).last(1).each do |board| %>
+                    <%= board.name %>
+                <% end %>
             </div>
         </div>
+        <% end %>
 
     </li>
     
     <% if user_signed_in? %>
     <div id="repun-<%= pun.id %>" class="modal repun-modal">
     
-    <%= form_for(Pun.new(params[:pun]), :validate => true) do |f| %>
+    <%= form_for(Pun.new(params[:pun]), :remote => true) do |f| %>
 
           <div class="left">
                
@@ -133,6 +146,20 @@
                         <%= f.hidden_field :link, :value => pun.link %>
                         <%= f.hidden_field :user_id, :value => current_user.id %>
                         <%= f.hidden_field :currency_id, :value => pun.currency.id %>
+
+
+
+
+                <% if pun.original_board_id.nil? %>
+                    <%= f.hidden_field :original_board_id, :value => pun.board_id %>
+                    <%= f.hidden_field :original_punaise_id, :value => pun.id %>
+                    <%= f.hidden_field :original_user_id, :value => pun.user_id %>
+                <% else %>
+                    <%= f.hidden_field :original_board_id, :value => pun.original_board_id %>
+                    <%= f.hidden_field :original_punaise_id, :value => pun.original_punaise_id %>
+                    <%= f.hidden_field :original_user_id, :value => pun.original_user_id %>
+                <% end %>
+
 
 
 
@@ -164,27 +191,6 @@
 </div>
 
 
-<h1>Listing puns</h1>
-
-<table>
-
-<% @puns.each do |pun| %>
-  <tr>
-    <td><%= pun.title %></td>
-    <td><%= pun.price %></td>
-    <td><%= pun.description %></td>
-    <td><%= link_to 'Show', pun %></td>
-    <td><%= link_to 'Edit', edit_pun_path(pun) %></td>
-    <td><%= link_to 'Destroy', pun, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-
-
-<%= link_to 'New Pun', new_pun_path %>
 
 
   <script type="text/javascript">

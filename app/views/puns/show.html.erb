@@ -14,12 +14,31 @@
         <%= link_to (image_tag @pun.image_url().to_s), "http://" + @pun.link %>
       </div>
 
+      <% unless @pun.original_board_id.nil? %>
       <div class="originallyon">
-        pefjef
+
+        Originellement par 
+        
+        <% User.where("id = ?", @pun.original_user_id).last(1).each do |user| %>
+          <%= link_to user.username, user_path(user) %>
+        <% end %>
+
+        sur
+
+        <% Board.where("id = ?", @pun.original_board_id).last(1).each do |board| %>
+          <%= link_to board.name, board_path(board) %>
+        <% end %>
+
       </div>
+      <% end %>
 
       <div class="comments">
-        afef,zef
+        <div id="commentslist">
+          <%= render "puns/showpartials/comments_list", :locals => {:pun => @pun} %>
+        </div>
+
+        <%= render "puns/showpartials/comment_do" %>
+        
       </div>
 
     </div>
@@ -62,19 +81,7 @@
         </div> 
 
         <div class="other-board-puns">
-          <% Pun.order('created_at DESC').where('user_id = ?', @pun.user.id).last(16).each do |pun| %>
-            <%= link_to (image_tag pun.image_url().to_s), puns_path(pun) %>
-          <% end %>
-          <% Pun.order('created_at DESC').where('user_id = ?', @pun.user.id).last(16).each do |pun| %>
-            <%= link_to (image_tag pun.image_url().to_s), puns_path(pun) %>
-          <% end %>
-          <% Pun.order('created_at DESC').where('user_id = ?', @pun.user.id).last(16).each do |pun| %>
-            <%= link_to (image_tag pun.image_url().to_s), puns_path(pun) %>
-          <% end %>
-          <% Pun.order('created_at DESC').where('user_id = ?', @pun.user.id).last(16).each do |pun| %>
-            <%= link_to (image_tag pun.image_url().to_s), puns_path(pun) %>
-          <% end %>
-          <% Pun.order('created_at DESC').where('user_id = ?', @pun.user.id).last(16).each do |pun| %>
+          <% Pun.order('created_at DESC').where('user_id = ?', @pun.user.id).last(5).each do |pun| %>
             <%= link_to (image_tag pun.image_url().to_s), puns_path(pun) %>
           <% end %>
         </div>       

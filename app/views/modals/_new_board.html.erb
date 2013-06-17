@@ -1,0 +1,12 @@
+<div id="new_board_modal" class="modal">
+    <%= form_for(Board.new(params[:board]), :remote => true) do |f| %>
+		
+		<%= f.text_field :name %>		
+		<%= f.text_area :description %>
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+
+		<%= f.submit %>
+
+	<% end %>
+
+</div>

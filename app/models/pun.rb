@@ -9,6 +9,11 @@ class Pun < ActiveRecord::Base
 
     belongs_to :user
 
+    belongs_to :board
+
+
+    has_many :comments
+
   	extend FriendlyId
   	friendly_id :description, use: :slugged
 
