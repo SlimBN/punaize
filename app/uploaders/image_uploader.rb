@@ -53,7 +53,15 @@ class ImageUploader < CarrierWave::Uploader::Base
 
 
   version :gridthumb do
-    process :resize_to_fit => [280, 10000]
+    process :resize_to_fill => [280, 310]
+  end
+
+  version :view do
+    process :resize_to_fit => [650, 10000]
+  end
+
+  version :otherthumb do
+    process :resize_to_fill => [72, 72]
   end
 
 

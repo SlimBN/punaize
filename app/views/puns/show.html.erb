@@ -16,7 +16,7 @@
           <div class="stats">
             <%= link_to (image_tag "icons/edit.png"), edit_pun_path(@pun) %>
             <%= link_to (image_tag "icons/like.png"), "" %>
-            <%= link_to (image_tag "icons/share.png"), "" %>
+            <a href="" onClick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + location.href, 'sharer', 'width=626,height=436');"><%= image_tag "icons/share.png" %></a>
           </div>
 
         </div>
@@ -24,7 +24,7 @@
         <% if @pun.link.nil? %>
           <%= image_tag @pun.image_url().to_s %>
         <% else %>
-          <%= link_to (image_tag @pun.image_url().to_s), "http://" + @pun.link %>
+          <%= link_to (image_tag @pun.image_url(:view).to_s), "http://" + @pun.link %>
         <% end %>
 
       </div>
@@ -97,7 +97,7 @@
 
         <div class="other-board-puns">
           <% Pun.order('created_at DESC').where('user_id = ?', @pun.user.id).last(5).each do |pun| %>
-            <%= link_to (image_tag pun.image_url().to_s), puns_path(pun) %>
+            <%= link_to (image_tag pun.image_url(:otherthumb).to_s), puns_path(pun) %>
           <% end %>
         </div>       
 

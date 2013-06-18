@@ -4,9 +4,34 @@
     <% Pun.order('created_at DESC').each do |pun| %>
     <li>
         <div id="pun">
+            <div class="description">
+                <%= pun.description %>
+
+                <div class="infos">
+                    <div class="user-avatar">
+                        <%= link_to (image_tag pun.user.avatar_url(:headerthumb).to_s), user_path(pun.user) %>
+                    </div>
+
+                    <div class="data">
+                        <div class="originalboard">
+                            <%= link_to pun.board.name, board_path(pun.board) %>
+                        </div>
+                        <div class="interaction">
+                            <% if user_signed_in? %>
+                                81 <a href="">J'aime</a> &bull; 39 <a href="#repun-<%= pun.id %>" rel="modal:open">Repun</a>
+                            <% else %>
+                                81 J'aime &bull; 39 Repun
+                            <% end %>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
             <div class="image">
                 <div class="overlay">
-                <% if user_signed_in? %>
+<!--                 <% if user_signed_in? %>
                     <div class="toplinks">
                         <a href="">
                             <div class="like">
@@ -29,7 +54,7 @@
                         <% end %>
 
                     </div>
-                <% end %>
+                <% end %> -->
 
                     <div class="watch">
                         <%= link_to (image_tag "icons/pun/watch.png"), pun_path(pun) %>
@@ -45,6 +70,8 @@
 
                 <%= image_tag pun.image_url(:gridthumb).to_s %>
             </div>
+
+
             
 
             <div class="stats">
@@ -74,13 +101,11 @@
                 
             </div>      
 
-            <div class="description">
-                <%= pun.description %>
-            </div>
+
 
         </div>   
 
-        <% unless pun.board.nil? %>
+<!--         <% unless pun.board.nil? %>
         <div class="user-avatar">
             <%= image_tag pun.user.avatar_url(:headerthumb).to_s %>
         </div>
@@ -94,11 +119,11 @@
             </div>
         </div>
         <% end %>
-
+ -->
         <div class="clear"></div>
 
         <!-- originellement sur -->
-        <% unless pun.original_board_id.nil? %>
+<!--         <% unless pun.original_board_id.nil? %>
         <div class="user-avatar">
             <%= image_tag pun.user.avatar_url(:headerthumb).to_s %>
         </div>
@@ -113,7 +138,7 @@
                 <% end %>
             </div>
         </div>
-        <% end %>
+        <% end %> -->
 
     </li>
     
@@ -194,30 +219,30 @@
 
 
   <script type="text/javascript">
-    $(document).ready(new function() {
-      // Prepare layout options.
-      var options = {
-        autoResize: true, // This will auto-update the layout when the browser window is resized.
-        container: $('#puns-container'), // Optional, used for some extra CSS styling
-        offset: 15, // Optional, the distance between grid items
-        itemWidth: 240 // Optional, the width of a grid item
-      };
+    // $(document).ready(new function() {
+    //   // Prepare layout options.
+    //   var options = {
+    //     autoResize: true, // This will auto-update the layout when the browser window is resized.
+    //     container: $('#puns-container'), // Optional, used for some extra CSS styling
+    //     offset: 15, // Optional, the distance between grid items
+    //     itemWidth: 240 // Optional, the width of a grid item
+    //   };
 
-      // Get a reference to your grid items.
-      var handler = $('#puns-container li');
+    //   // Get a reference to your grid items.
+    //   var handler = $('#puns-container li');
 
-      // Call the layout function.
-      handler.wookmark(options);
+    //   // Call the layout function.
+    //   handler.wookmark(options);
 
-      $('#puns-container li').imagesLoaded(function() {
-          // do stuff after images are loaded
-          handler.wookmark(options);
-        });
+    //   $('#puns-container li').imagesLoaded(function() {
+    //       // do stuff after images are loaded
+    //       handler.wookmark(options);
+    //     });
 
 
 
-      $('#puns-container').trigger('refreshWookmark');
+    //   $('#puns-container').trigger('refreshWookmark');
 
-    });
+    // });
   </script>
 
