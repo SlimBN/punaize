@@ -1,21 +1,38 @@
+
+<div id="user-show">
+  
+  <div class="header">
+    
+    <div class="profilepic">
+      <%= link_to (image_tag @user.avatar_url().to_s, :size => '100x100'), user_path(@user), :title => @user.username %>
+    </div>
+
+    <div class="user-data">
+      <div class="name">
+        <%= @user.username %>
+      </div>
+    </div>
+    
+    <div class="links">
+      
+    </div>
+    
+  </div>
+
+  <div class="user-menu">
+    <ul>
+      <li>Punaizes</li>
+      <li>Tableaux</li>
+      <li>Abonnés</li>
+      <li>Abonnements</li>
+    </ul>
+  </div>
+</div>
+
+
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Username:</b>
-  <%= @user.username %>
-</p>
-
-<%= image_tag @user.avatar_url(:headerthumb).to_s %>
-
-<p>
-  <b>Avatar:</b>
-  <%= @user.avatar %>
-</p>
-
-<p>
-  <b>Slug:</b>
-  <%= @user.slug %>
-</p>
 
 <p>
   <b>Country:</b>
@@ -27,15 +44,6 @@
   <%= @user.state_id %>
 </p>
 
-<p>
-  <b>Is admin:</b>
-  <%= @user.is_admin %>
-</p>
-
-<p>
-  <b>Is moderator:</b>
-  <%= @user.is_moderator %>
-</p>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
