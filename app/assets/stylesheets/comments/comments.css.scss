@@ -1,0 +1,60 @@
+@import "colors";
+
+#commentslist {
+
+	.comment {
+		width: 100%;
+
+		border-bottom: 1px dashed #ccc;
+
+		padding-bottom: 10px;
+		margin-bottom: 10px;
+
+		.user {
+			width: 80px;
+
+			display: inline-block;
+
+			img {
+				height: 60px;
+				width: 60px;
+
+				border-radius: 5px;
+			}
+
+		}
+
+		.content {
+			width: 580px;
+
+			display: inline-block;
+			vertical-align: top;
+
+			text-align: left;
+
+			padding-left: 10px;
+		}
+
+		.time {
+			width: 680px;
+			margin: 0 auto;
+			padding-left: 5px;
+
+			margin-bottom: 5px;
+
+			text-align: left;
+
+			font-family: "LatoLight";
+			font-size: 20px;
+
+			a {
+				font-family: "LatoItalic";
+				font-size: 22px;
+				text-decoration: none;
+				color: $writings
+			}
+		}
+	}
+
+
+}

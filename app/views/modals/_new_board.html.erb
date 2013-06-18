@@ -1,11 +1,25 @@
 <div id="new_board_modal" class="modal">
     <%= form_for(Board.new(params[:board]), :remote => true) do |f| %>
+
+
+
+    	<div class="name">
+    		<%= f.text_field :name, :placeholder => "Nommez moi..." %>
+    	</div>
+
+    	<div class="description">
+    		<%= f.text_area :description, :placeholder => "Est ce que j'ai un but dans la vie?" %>
+    	</div>
 		
-		<%= f.text_field :name %>		
-		<%= f.text_area :description %>
+				
+		
 		<%= f.hidden_field :user_id, :value => current_user.id %>
 
-		<%= f.submit %>
+		<div id="actions">
+			<input name="commit" type="submit" value="Ajouter à Mes Tableaux" />
+		</div>
+
+		
 
 	<% end %>
 

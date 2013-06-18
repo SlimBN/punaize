@@ -1,30 +1,240 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
+
+<div id="board-header">
   <%= @board.name %>
-</p>
+  <p>
+    <%= @board.description %>
+  </p>
+</div>
 
-<p>
-  <b>Description:</b>
-  <%= @board.description %>
-</p>
+<div id="board-bar">
+  <div class="board-owner">
+    <%= link_to (image_tag @board.user.avatar_url(:headerthumb).to_s), "" %><%= link_to @board.user.username, "" %>
+  </div>
 
-<p>
-  <b>Slug:</b>
-  <%= @board.slug %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @board.user_id %>
-</p>
-
-<p>
-  <b>Cover:</b>
-  <%= @board.cover_id %>
-</p>
+</div>
 
 
-<%= link_to 'Edit', edit_board_path(@board) %> |
-<%= link_to 'Back', boards_path %>
+<div id="puns-container">
+    
+    <% Pun.where("board_id = ?", @board.id).order('created_at DESC').each do |pun| %>
+    <li>
+        <div id="pun">
+            <div class="image">
+                <div class="overlay">
+                <% if user_signed_in? %>
+                    <div class="toplinks">
+                        <a href="">
+                            <div class="like">
+                                <% if (current_user.likings.where("pun_id = ?", pun.id).count == 0) %>
+                                    <%= link_to (image_tag "icons/pun/love.png"), likings_path(:liked => pun.id), :method => :post %>
+                                <% else %>
+                                    <%= link_to (image_tag "icons/pun/love_red.png"), liking_path(pun.likings), :method => :delete %>
+                                <% end %>
+
+                            </div>                            
+                        </a><a href="#repun-<%= pun.id %>" rel="modal:open">
+                            <div class="repun">
+                                <%= image_tag "icons/pun/repun.png" %>
+                            </div>                            
+                        </a>
+
+                        <% if (current_user.id == pun.user.id) %>
+                            <%= link_to 'Edit', edit_pun_path(pun) %>
+                            <%= link_to 'Destroy', pun, method: :delete, data: { confirm: 'Are you sure?' } %>
+                        <% end %>
+
+                    </div>
+                <% end %>
+
+                    <div class="watch">
+                        <%= link_to (image_tag "icons/pun/watch.png"), pun_path(pun) %>
+                    </div>
+                    
+                    <% unless pun.price.nil? %>
+                    <div class="bottomprice">
+                        <%= pun.price %> <%= pun.currency.symbol %>
+                    </div>
+                    <% end %>
+                    
+                </div>
+
+                <%= image_tag pun.image_url(:gridthumb).to_s %>
+            </div>
+            
+
+            <div class="stats">
+                <div class="first">
+                    <%= image_tag "icons/love.png" %>
+                    <div class="number">
+                        <%= pun.likings.count %>
+                    </div>
+                </div>
+                
+                <div class="second">
+                    <%= image_tag "icons/comment.png" %>
+                    <div class="number">
+                        80
+                    </div>
+                </div>
+                
+                <a href="#new_pun_modal" rel="modal:open">
+                    <div class="third">
+                        <%= image_tag "icons/punaise.png" %>
+                        <div class="number">
+                            <%= Pun.where("original_punaise_id = ?", pun.id).count + 1 %>
+                        </div>
+                    </div>                    
+                </a>
+
+                
+            </div>      
+
+            <div class="description">
+                <%= pun.description %>
+            </div>
+
+        </div>   
+
+        <% unless pun.board.nil? %>
+        <div class="user-avatar">
+            <%= image_tag pun.user.avatar_url(:headerthumb).to_s %>
+        </div>
+
+        <div class="pinned-on">
+            <div class="sur">
+                Epinglé sur:
+            </div>
+            <div class="board">
+                <%= link_to pun.board.name, board_path(pun.board) %>
+            </div>
+        </div>
+        <% end %>
+
+        <div class="clear"></div>
+
+        <!-- originellement sur -->
+        <% unless pun.original_board_id.nil? %>
+        <div class="user-avatar">
+            <%= image_tag pun.user.avatar_url(:headerthumb).to_s %>
+        </div>
+
+        <div class="pinned-on">
+            <div class="sur">
+                Originellement sur:
+            </div>
+            <div class="board">
+                <% Board.where("id = ?", pun.original_board_id).last(1).each do |board| %>
+                    <%= board.name %>
+                <% end %>
+            </div>
+        </div>
+        <% end %>
+
+    </li>
+    
+    <% if user_signed_in? %>
+    <div id="repun-<%= pun.id %>" class="modal repun-modal">
+    
+    <%= form_for(Pun.new(params[:pun]), :remote => true) do |f| %>
+
+          <div class="left">
+               
+               <div class="presentation">
+                    
+                    <div class="field">
+                         <%= f.text_area :description, :value => pun.description %>
+                    </div>
+       
+                    <div class="field">
+
+                         <select id="pun_board_id" name="pun[board_id]" value="">
+                              <% Board.where("user_id = ?", current_user.id).each do |board|  %>
+                                   <option value="<%= board.id %>"><%= board.name %> </option>
+                              <% end %>
+                         </select>
+                    </div>
+
+               </div>
+
+
+                        <%= f.hidden_field :price, :value => pun.price %>
+                        <%= f.hidden_field :link, :value => pun.link %>
+                        <%= f.hidden_field :user_id, :value => current_user.id %>
+                        <%= f.hidden_field :currency_id, :value => pun.currency.id %>
+
+
+
+
+                <% if pun.original_board_id.nil? %>
+                    <%= f.hidden_field :original_board_id, :value => pun.board_id %>
+                    <%= f.hidden_field :original_punaise_id, :value => pun.id %>
+                    <%= f.hidden_field :original_user_id, :value => pun.user_id %>
+                <% else %>
+                    <%= f.hidden_field :original_board_id, :value => pun.original_board_id %>
+                    <%= f.hidden_field :original_punaise_id, :value => pun.original_punaise_id %>
+                    <%= f.hidden_field :original_user_id, :value => pun.original_user_id %>
+                <% end %>
+
+
+
+
+          </div>
+
+          <div class="right">
+               
+               <div id="image-uploader">
+                    <%= f.text_field :remote_image_url, :value => "http://localhost:5000"+pun.image_url.to_s %>
+               </div>
+
+          </div>
+
+
+          
+        <div id="actions">
+            <input name="commit" type="submit" value="Accrocher" />
+        </div>
+
+    <% end %>
+
+    </div>
+    <% end %>
+
+    <% end %>
+
+
+
+</div>
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(new function() {
+      // Prepare layout options.
+      var options = {
+        autoResize: true, // This will auto-update the layout when the browser window is resized.
+        container: $('#puns-container'), // Optional, used for some extra CSS styling
+        offset: 15, // Optional, the distance between grid items
+        itemWidth: 240 // Optional, the width of a grid item
+      };
+
+      // Get a reference to your grid items.
+      var handler = $('#puns-container li');
+
+      // Call the layout function.
+      handler.wookmark(options);
+
+      $('#puns-container li').imagesLoaded(function() {
+          // do stuff after images are loaded
+          handler.wookmark(options);
+        });
+
+
+
+      $('#puns-container').trigger('refreshWookmark');
+
+    });
+  </script>
+
+

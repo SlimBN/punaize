@@ -7,11 +7,26 @@
 
     
       <div class="image">
-        <div class="link"><%= image_tag "icons/pun/link.png" %> <%= link_to (truncate(@pun.link, :length => 100)), "http://" + @pun.link %></div>
+        <div class="link">
+          
+          <% unless @pun.link.nil? %>
+            <%= image_tag "icons/pun/link.png" %> <%= link_to (truncate(@pun.link, :length => 100)), "http://" + @pun.link %>
+          <% end %>
+        
+          <div class="stats">
+            <%= link_to (image_tag "icons/edit.png"), edit_pun_path(@pun) %>
+            <%= link_to (image_tag "icons/like.png"), "" %>
+            <%= link_to (image_tag "icons/share.png"), "" %>
+          </div>
 
-        <!-- truncate(newspaper.description, :length => 245) -->
+        </div>
 
-        <%= link_to (image_tag @pun.image_url().to_s), "http://" + @pun.link %>
+        <% if @pun.link.nil? %>
+          <%= image_tag @pun.image_url().to_s %>
+        <% else %>
+          <%= link_to (image_tag @pun.image_url().to_s), "http://" + @pun.link %>
+        <% end %>
+
       </div>
 
       <% unless @pun.original_board_id.nil? %>
@@ -65,7 +80,7 @@
             </div>
 
             <div class="boardname">
-              <%= @pun.slug %>
+              Dans <%= link_to @pun.board.name, board_path(@pun.board) %>
             </div>
           </div>
 
@@ -96,7 +111,6 @@
 </div>
 
 
-<div style="display: block; width: 1200px;">dzdzzd</div>
 
 
 <p>
@@ -107,27 +121,6 @@
 <p>
   <b>Currency:</b>
   <%= @pun.currency_id %>
-</p>
-
-
-<p>
-  <b>Original user:</b>
-  <%= @pun.original_user_id %>
-</p>
-
-<p>
-  <b>Board:</b>
-  <%= @pun.board_id %>
-</p>
-
-<p>
-  <b>Original board:</b>
-  <%= @pun.original_board_id %>
-</p>
-
-<p>
-  <b>Original punaise:</b>
-  <%= @pun.original_punaise_id %>
 </p>
 
 
